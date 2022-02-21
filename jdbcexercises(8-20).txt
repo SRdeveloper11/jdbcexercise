@@ -1,0 +1,129 @@
+Exercise 8: Write a query to find those customers with their name and those salesmen with their name and city who lives in the same city.
+SELECT salesman.name,customer.cust_name,salesman.City
+FROM customer, salesman 
+WHERE salesman.City=customer.City ;
+
+
+Exercise 9:  Write a SQL statement to find the names of all customers along with the salesmen who works for them.
+Query: SELECT salesman.name,customer.cust_name 
+FROM customer, salesman 
+WHERE salesman.salesman_id=customer.salesman_id ;
+
+
+
+Exercise 10: Write a SQL statement that finds out each order number followed by the name of the customers who made the order.
+Query:SELECT orders.ord_no,customer.cust_name 
+FROM customer, orders
+WHERE customer.customer_id=orders.customer_id
+
+
+
+
+Exercise 11 : Write a SQL statement that sorts out the customer and their grade who made an order. Each of the customers must have a grade and served by at least a salesman, who belongs to a city.
+SELECT customer.grade,customer.cust_name 
+FROM customer, orders
+WHERE customer.customer_id=orders.customer_id
+
+
+
+
+
+
+
+Exercise 12 : Write a query that produces all customers with their name, city, salesman and commission, who served by a salesman and the salesman works at a rate of the commission within 12% to 14%
+Query:SELECT customer.cust_name,customer.city,salesman.name ,salesman.commission
+FROM customer, salesman
+WHERE customer.salesman_id=salesman.salesman_id
+AND salesman.commission
+BETWEEN .12 AND .14
+
+
+
+
+
+
+
+Exercise 13 : Write a query to list the department ID and name of all the departments where no employee is working.
+Query:SELECT department.DEPARTMENT_ID,department.DEPARTMENT_NAME
+FROM department 
+WHERE department.MANAGER_ID=0;
+
+
+
+
+
+
+Exercise 14 : Write a query to get 3 maximum salaries from Employees table.
+Query:SELECT DISTINCT SALARY 
+FROM employees a 
+WHERE 3 >= (SELECT COUNT(DISTINCT salary) 
+FROM employees b 
+WHERE b. SALARY  >= a. SALARY ) 
+ORDER BY a. SALARY  DESC;
+
+
+
+
+
+
+Exercise 15 : Write a query to get 3 minimum salaries from Employees table.
+Query:SELECT DISTINCT SALARY 
+FROM employees a 
+WHERE 3 >= (SELECT COUNT(DISTINCT salary) 
+FROM employees b 
+WHERE b. SALARY  <= a. SALARY ) 
+ORDER BY a. SALARY  DESC;
+
+
+
+
+
+
+Exercise 16 : Write a query to find the 4th minimum salary in the employees table
+SELECT DISTINCT SALARY 
+FROM employees a 
+WHERE 4 = (SELECT COUNT(DISTINCT salary) 
+FROM employees b 
+WHERE a. SALARY  <= b. SALARY ) 
+ORDER BY a. SALARY  DESC;
+
+
+
+
+
+
+
+
+Exercise 17 : Write a query to display the employee ID, first name, last name, salary of all employees whose salary is 
+above average for their departments.
+Query:SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY
+FROM employees AS A 
+WHERE salary > 
+(SELECT AVG(salary) FROM employees WHERE department_id = A.department_id);
+
+
+
+
+
+Exercise 18 : Write a query to list the number of jobs available in the employees table.
+query:SELECT COUNT(DISTINCT job_id) 
+FROM employees;
+
+
+
+
+Exercise 19 : Write a query to get the minimum salary from employees table..
+     SELECT DISTINCT SALARY 
+FROM employees a 
+WHERE 1= (SELECT COUNT(DISTINCT salary) 
+FROM employees b 
+WHERE b. SALARY  <= a. SALARY ) 
+ORDER BY a. SALARY  DESC;
+
+
+
+
+
+Exercise 20 : Write a query to get the total salaries payable to employees .
+Query:SELECT SUM(salary) 
+     FROM employees;
